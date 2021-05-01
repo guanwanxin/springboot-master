@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.10.101:3306/quartz?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    spring.datasource.driverClassName: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+
+
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    initialSize: 5
+#    minIdle: 5
+#    maxActive: 20
+#    maxWait: 600000
+#    timeBetweenEvictionRunsMillis: 600000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: SELECT 1
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+
+  profiles:
+    active: dev
