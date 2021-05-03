@@ -1,5 +1,7 @@
 package com.gwx.mail;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -17,20 +19,29 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 
 /**
- * @author zfh
- * @version 1.0
- * @since 2019/12/9 10:46
+ * @ClassName: EmailAction
+ * @Description: 邮件发送
+ * @Version: 1.0
+ * @Author: Thomas
+ * @Date: 2021/5/2 11:06
  */
 @RestController
 @RequestMapping(value = "email")
 public class EmailAction {
+    private static final Logger log = LoggerFactory.getLogger(EmailAction.class);
 
     @Autowired
     private final JavaMailSender mailSender;
 
+    /**
+     * 发送者账号
+     */
     @Value("${spring.mail.username}")
     private String sendName;
 
+    /**
+     * 邮件模板引擎
+     */
     @Autowired
     private TemplateEngine templateEngine;
 
@@ -38,6 +49,13 @@ public class EmailAction {
         this.mailSender = mailSender;
     }
 
+    /**
+     * @Description: 发送简单的文本邮件
+     * @Param: [msg, email]
+     * @return: java.lang.String
+     * @Author: Thomas
+     * @Date: 2021/5/2 11:07
+     */
     @PostMapping(value = "simple")
     public String sendSimpleMsg(String msg, String email) {
         if (StringUtils.isEmpty(msg) || StringUtils.isEmpty(email)) {
@@ -58,6 +76,13 @@ public class EmailAction {
         }
     }
 
+    /**
+     * @Description: 发送HTML邮件
+     * @Param: [msg, email]
+     * @return: java.lang.String
+     * @Author: Thomas
+     * @Date: 2021/5/2 11:07
+     */
     @PostMapping(value = "html")
     public String sendHtmlMsg(String msg, String email) {
         if (StringUtils.isEmpty(msg) || StringUtils.isEmpty(email)) {
@@ -82,6 +107,13 @@ public class EmailAction {
         }
     }
 
+    /**
+     * @Description: 发送包含附件的邮件
+     * @Param: [msg, email]
+     * @return: java.lang.String
+     * @Author: Thomas
+     * @Date: 2021/5/2 11:08
+     */
     @PostMapping(value = "mime_with_file")
     public String sendWithFile(String msg, String email) {
         if (StringUtils.isEmpty(msg) || StringUtils.isEmpty(email)) {
@@ -110,6 +142,13 @@ public class EmailAction {
         }
     }
 
+    /**
+     * @Description: 发送带静态资源图片的HTML邮件
+     * @Param: [msg, email]
+     * @return: java.lang.String
+     * @Author: Thomas
+     * @Date: 2021/5/2 11:08
+     */
     @PostMapping(value = "html_with_img")
     public String sendHtmlWithImg(String msg, String email) {
         if (StringUtils.isEmpty(msg) || StringUtils.isEmpty(email)) {
@@ -134,6 +173,13 @@ public class EmailAction {
         }
     }
 
+    /**
+     * @Description: 使用HTML模板文件发送邮件
+     * @Param: [msg, email]
+     * @return: java.lang.String
+     * @Author: Thomas
+     * @Date: 2021/5/2 11:08
+     */
     @PostMapping(value = "html_with_template")
     public String sendHtmlByTemplate(String msg, String email) {
         if (StringUtils.isEmpty(msg) || StringUtils.isEmpty(email)) {
@@ -157,6 +203,4 @@ public class EmailAction {
             return "发送失败：" + e.getMessage();
         }
     }
-
-
 }
