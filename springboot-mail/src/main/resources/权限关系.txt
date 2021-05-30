@@ -1,0 +1,18 @@
+--查询用户信息
+select top 1 a.merNo as 'merNos', a.merNo, a.Name as 'merName', b.[User] as 'username', b.UserID as userid, a.MerID as 'merid', g.blocked , g.isPermiRefund as isPermiRefund, g.is_show_Report_menu as isShowReportMenu, b.Password as password from GW_Merchant a, GW_MerUser b, gw_mer_attach g where a.MerID = b.MerID AND g.merNo = a.MerNO and a.MerNO =? and b.[User]=? 
+1002(String), admin(String)
+ 
+--查询用户角色所拥有的所有菜单ID
+SELECT DISTINCT rm.menu_id FROM gw_meruserrole ur right JOIN gw_mer_role_menu rm ON ur.roleid = rm.role_id WHERE 1 = 1 and ur.userid = ? 
+1173(String)
+Total: 19
+
+--查询所有父菜单
+SELECT menu_id, parent_id, menu_name, menu_url, menu_type, icon, order_num, lc_language FROM gw_mer_menu WHERE 1 = 1 and parent_id = ? and lc_language=? order by cast(order_num as NUMERIC) asc 
+0(String), zh_CN(String)
+Total: 6
+
+--分别查询子菜单
+Preparing: SELECT menu_id, parent_id, menu_name, menu_url, menu_type, icon, order_num, lc_language FROM gw_mer_menu WHERE 1 = 1 and parent_id = ? and lc_language=? order by cast(order_num as NUMERIC) asc 
+10001(String), zh_CN(String)
+
