@@ -1,4 +1,4 @@
-package com.gwx.mail;
+package com.gwx.mail.utils;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeBodyPart;
 

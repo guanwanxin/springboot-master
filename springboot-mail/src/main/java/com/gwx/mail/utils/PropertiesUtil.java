@@ -1,4 +1,4 @@
-package com.gwx.mail;
+package com.gwx.mail.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

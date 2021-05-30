@@ -1,4 +1,4 @@
-package com.gwx.mail;
+package com.gwx.mail.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2021/5/1 22:34
  */
 @RestController
-public class TestAction {
+public class TestController {
 
     @RequestMapping("/test")
     public String test(){

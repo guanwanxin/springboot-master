@@ -1,4 +1,4 @@
-package com.gwx.mail;
+package com.gwx.mail.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +27,8 @@ import java.io.File;
  */
 @RestController
 @RequestMapping(value = "email")
-public class EmailAction {
-    private static final Logger log = LoggerFactory.getLogger(EmailAction.class);
+public class EmailController {
+    private static final Logger log = LoggerFactory.getLogger(EmailController.class);
 
     @Autowired
     private final JavaMailSender mailSender;
@@ -42,10 +42,10 @@ public class EmailAction {
     /**
      * 邮件模板引擎
      */
-    @Autowired
+    @Autowired(required=true)
     private TemplateEngine templateEngine;
 
-    public EmailAction(JavaMailSender mailSender) {
+    public EmailController(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
