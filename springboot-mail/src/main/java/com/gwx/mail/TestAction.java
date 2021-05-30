@@ -15,6 +15,6 @@ public class TestAction {
 
     @RequestMapping("/test")
     public String test(){
-        return "This is a test";
+        return "This is a PropertiesUtil";
     }
 }
